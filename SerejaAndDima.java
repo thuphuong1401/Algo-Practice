@@ -27,7 +27,7 @@ public class Main {
       } else {
         dima += temp;
       }
-        
+      
      	if(temp == cards[rightmost]) {
         rightmost--;
       } else {
@@ -35,9 +35,7 @@ public class Main {
       }
       turn++;
     }
-    
-    
-    
+   
     System.out.println(sereja + " " + dima);
   }
 }
