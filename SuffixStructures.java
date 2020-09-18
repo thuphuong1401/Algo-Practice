@@ -1,6 +1,6 @@
 /*
 Souce: Big-O Blue class - Codeforces
-/*
+*/
 import java.util.Scanner;
 
 public class Main {
