@@ -1,2 +1,3 @@
-# Algo-Journey
-A code documentation of my algo journey
+# Algo-Practice
+
+A code documentation of the problems I solved.
