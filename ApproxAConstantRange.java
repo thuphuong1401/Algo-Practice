@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
   
- 	static final int MAX = (int)1e5 + 5;
+ static final int MAX = (int)1e5 + 5;
   
   public static void main(String[] args) {
     Scanner scan = new Scanner(System.in);
@@ -18,14 +18,14 @@ public class Main {
     int maxRange = 0;
     int[] freq = new int[MAX];
     int j = 0;
- 		int distinct = 0;
+    int distinct = 0;
     
     for(int i=0; i<N; i++) {
       
-      // freq=0 => never seen this datapts
+        // freq=0 => never seen this datapts
     	if(freq[datapts[i]] == 0) {
-        distinct++;
-      }  
+          distinct++;
+        }  
       
       freq[datapts[i]]++;
 			
