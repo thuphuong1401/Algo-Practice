@@ -16,13 +16,20 @@ class Topic {
   }
 }
 
+/*
+Tips on how to write the compare method
+Return values: -1 means t1 < t2, 0 means t1 = t2, 1 means t1 > t2
+1. Write the "correct" way of how t1 should be compared to t2
+2. Modify return result depending on the data structure consider (in this case, it's a min heap, that's why we have to flip order if we want to poll the maximum element
+*/
+
 class TopicComparator implements Comparator<Topic> {
   @Override
   public int compare(Topic t1, Topic t2) {
-    if(t1.changeInZScore < t2.changeInZScore || (t1.changeInZScore == t2.changeInZScore && t1.id < t2.id)) {
-      return 1;
+    if(t1.changeInZScore > t2.changeInZScore || (t1.changeInZScore == t2.changeInZScore && t1.id > t2.id)) {
+      return -1;
     } else {
-      return -1; 
+      return 1;
     }
   }
 }
