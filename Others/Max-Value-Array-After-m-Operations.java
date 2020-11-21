@@ -9,40 +9,39 @@ import java.io.*;
 import java.util.*;
 
 class MyCode {
-  
-  public static int findMaxValue(int n, int[][] op) {
-    int[] investments = new int[n+1];
-    for(int i = 0; i < op.length; i++) {
-      int left = op[i][0];
-      int right = op[i][1];
-      int contrib = op[i][2];
-      
-      investments[left] += contrib;
-      investments[right+1] -= contrib;
-      
+
+    public static int findMaxValue(int n, int[][] op) {
+        int[] investments = new int[n + 1];
+        for (int i = 0; i < op.length; i++) {
+            int left = op[i][0];
+            int right = op[i][1];
+            int contrib = op[i][2];
+
+            investments[left] += contrib;
+            investments[right + 1] -= contrib;
+
+        }
+
+        /*
+         * Calculate prefix sum of investments, then find max among the prefix sums. To
+         * do this, I might create an array an calculate the prefix sum of investments
+         * then get the max of such array Or do the following
+         */
+
+        int currPrefixSum = 0;
+        int maxSum = 0;
+        for (int i = 0; i < n; i++) {
+            currPrefixSum += investments[i];
+            maxSum = Math.max(currPrefixSum, maxSum);
+        }
+
+        return maxSum;
+
     }
-    
-    /* 
-    Calculate prefix sum of investments, then find max among the prefix sums.
-    To do this, I might create an array an calculate the prefix sum of investments then get the max of such array
-    Or do the following
-    */ 
-    
-    int currPrefixSum = 0;
-    int maxSum = 0;
-    for(int i = 0; i < n; i++) {
-      currPrefixSum += investments[i];
-      maxSum = Math.max(currPrefixSum, maxSum);
+
+    public static void main(String[] args) {
+        int[][] operations = { { 0, 1, 100 }, { 1, 4, 100 }, { 2, 3, 100 } };
+        int max = findMaxValue(5, operations);
+        System.out.println(max);
     }
-    
-    return maxSum;
-    
-  }
-  
-  
-	public static void main (String[] args) {
-    int[][] operations = {{0, 1, 100}, {1, 4, 100}, {2, 3, 100}};
-    int max = findMaxValue(5, operations);
-    System.out.println(max);
-	}
 }
