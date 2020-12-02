@@ -7,3 +7,6 @@ Problem sources:
 - Leet Code
 - SPOJ
 - Big-O
+- UVA Online Judge
+- Codechef
+
