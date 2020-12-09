@@ -1,4 +1,3 @@
-// package whatever; // don't place package name!
 
 /*
 https://www.geeksforgeeks.org/maximum-value-array-m-range-increment-operations/?fbclid=IwAR22k1IDTx7fcM129JYr73k3EdCoJWgx2DEk_L44zwsvN0tkkr_S-r1uaas
@@ -21,12 +20,6 @@ class MyCode {
             investments[right + 1] -= contrib;
 
         }
-
-        /*
-         * Calculate prefix sum of investments, then find max among the prefix sums. To
-         * do this, I might create an array an calculate the prefix sum of investments
-         * then get the max of such array Or do the following
-         */
 
         int currPrefixSum = 0;
         int maxSum = 0;
