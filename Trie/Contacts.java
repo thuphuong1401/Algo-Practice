@@ -1,3 +1,4 @@
+
 /*
 https://www.hackerrank.com/challenges/contacts/problem
 */
@@ -11,7 +12,7 @@ Question: find x => how many words having prefix x?
 class Node {
     public Node[] child;
     public int num; // number of words having prefix ending in this node
-    
+
     public Node() {
         child = new Node[26];
         num = 0;
@@ -20,13 +21,13 @@ class Node {
 
 class MyCode {
     static Node root;
-    
+
     public static void addWord(Node root, String s) {
         int ch;
         Node temp = root;
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             ch = s.charAt(i) - 'a';
-            if(temp.child[ch] == null) {
+            if (temp.child[ch] == null) {
                 Node x = new Node();
                 temp.child[ch] = x;
             }
@@ -34,27 +35,27 @@ class MyCode {
             temp.num++;
         }
     }
-    
+
     public static int findWord(Node root, String s) {
         int ch;
         Node temp = root;
-        for(int i = 0; i < s.length(); i++) {
+        for (int i = 0; i < s.length(); i++) {
             ch = s.charAt(i) - 'a';
-            if(temp.child[ch] == null) {
+            if (temp.child[ch] == null) {
                 return 0;
             }
             temp = temp.child[ch];
         }
         return temp.num;
     }
-    
-	public static void main (String[] args) {
+
+    public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
         root = new Node();
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             String op = scan.next();
-            if(op.equals("add")) {
+            if (op.equals("add")) {
                 String word = scan.next();
                 addWord(root, word);
             } else {
@@ -63,5 +64,5 @@ class MyCode {
                 System.out.println(ans);
             }
         }
-	}
+    }
 }
