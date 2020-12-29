@@ -8,7 +8,7 @@ import java.io.*;
 
 class MyCode {
     
-	private static int[] parent;
+    private static int[] parent;
     private static int[] size;
     private static int count;
     private static int n;
