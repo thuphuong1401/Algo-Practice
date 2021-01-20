@@ -7,7 +7,7 @@ import java.io.*;
 
 class MyCode {
     
-	public static void main (String[] args) {
+    public static void main (String[] args) {
         Scanner scan = new Scanner(System.in);
         while(true) {
             int k = scan.nextInt();
@@ -23,7 +23,7 @@ class MyCode {
             
             System.out.println();
         }
-	}
+    }
     
     /*
     Big idea: Fix res[i] by assigning res[i] = nums[j], j: p -> nums.length-1
