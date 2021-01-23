@@ -1,5 +1,7 @@
 /*
 https://www.spoj.com/problems/RPLA/
+Use priority queue and record level of traversal is wrong
+rank(v) = total number of vertices PRECEEDING v 
 */
 
 import java.util.*;
@@ -9,7 +11,7 @@ class MyCode {
     static List<List<Integer>> graph;
     static int n;
     
-	public static void main (String[] args) {
+    public static void main (String[] args) {
         Scanner scan = new Scanner(System.in);
         int numTestCases = scan.nextInt();
         graph = new ArrayList<List<Integer>>();
@@ -75,7 +77,7 @@ class MyCode {
             
             graph.clear();
         }
-	}
+    }
     
     public static List<Integer> topoSort(int[] indegree) {
         // find indegree
