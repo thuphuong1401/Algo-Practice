@@ -1,5 +1,11 @@
 /*
 https://www.hackerrank.com/challenges/sansa-and-xor/problem
+
+Note: công thức tính số lần xuất hiện của arr[i]: (n-i) * (i+1)
+
+(i+1): số cách chọn điểm bắt đầu của đoạn chứa arr[i]
+(n-i): số cách chọn điểm kết thúc của đoạn chứa arr[i]
+Giải thích: 
 */
 import java.util.Scanner;
 
