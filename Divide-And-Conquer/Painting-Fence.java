@@ -34,7 +34,7 @@ class MyCode {
     private static int n;
     private static int fence[];
     
-	public static void main (String[] args) {
+    public static void main (String[] args) {
         Scanner scan = new Scanner(System.in);
         n = scan.nextInt();
         fence = new int[n];
@@ -43,7 +43,7 @@ class MyCode {
         }
         int ans = strokesNeeded(0, n-1, 0);
         System.out.println(ans);
-	}
+     }
     
     
     private static int strokesNeeded(int left, int right, int horizontalPaintedHeight) {
