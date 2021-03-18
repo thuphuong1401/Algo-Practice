@@ -9,7 +9,7 @@ class MyCode {
     static int MAX = 10001;
     static long dp[];
     
-	public static void main (String[] args) {
+    public static void main (String[] args) {
         dp = new long[MAX];
         cubeCoinChange();
         Scanner scan = new Scanner(System.in);
@@ -17,7 +17,7 @@ class MyCode {
             int n = scan.nextInt();
             System.out.println(dp[n]);
         }            
-	}
+    }
     
     private static void cubeCoinChange() {
         dp[0] = 1;
