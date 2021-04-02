@@ -1,52 +1,83 @@
 /*
 https://codeforces.com/problemset/problem/835/D
 */
+
 import java.util.*;
 import java.io.*;
 
-class MyCode {
+public class Main {
     
-    private static boolean isPalindrome(String s) {
-        String rev = new StringBuilder(s).reverse().toString();
-        return s.equals(rev);
+    private static int RSHash(String keys) {
+        int a = 63689;
+        int b = 378551;
+        int hashValue = 0;
+        for(int i = 0; i < keys.length(); i++) {
+            hashValue = (hashValue * a + keys.charAt(i));
+            a = a * b;
+        }
+        return hashValue & 0x7FFFFFFF;
+    }
+    
+    private static int RSHashReverse(String keys) {
+        int a = 63689;
+        int b = 378551;
+        int hashValue = 0;
+        for(int i = keys.length() - 1; i >= 0; i--) {
+            hashValue = (hashValue * a + keys.charAt(i));
+            a = a * b;
+        }
+        return hashValue & 0x7FFFFFFF;
     }
     
 	public static void main (String[] args) {
         Scanner scan = new Scanner(System.in);
         String input = scan.next();
         int n = input.length();
-        boolean[][][] dp = new boolean[n+1][n+1][n+1];
-        String[][] dpSegment = new String[n+1][n+1];
+        boolean[][][] dp = new boolean[2][n+1][n+1];
+        int[][] dpSegment = new int[n+1][n+1];
         int numKPalindrome = 0;
+        int curState = 1;
+        
         
         for(int i = 0; i < n; i++) {
             for(int j = i + 1; j <= n; j++) {
-                dpSegment[i][j] = input.substring(i, j);
-                dp[1][i][j] = isPalindrome(dpSegment[i][j]);
-                if (dp[1][i][j]) {
+                String sub = input.substring(i, j);
+                dpSegment[i][j] = RSHash(sub);
+                dp[curState][i][j] = (RSHashReverse(sub) == dpSegment[i][j]);
+                if (dp[curState][i][j]) {
                     numKPalindrome++;
                 }
             }
         }
-        
+    
         System.out.print(numKPalindrome + " ");
         
         for(int k = 2; k <= n; k++) {
             numKPalindrome = 0;
+            curState = 1 - curState;
+            
             for(int i = 0; i < n; i++) {
                 for(int j = i + 1; j <= n; j++) {
-                    
-                    int half_len = (j - i) / 2;
-                    if(half_len == 0) {
-                        dp[k][i][j] = false;
+                    if (!dp[1 - curState][i][j]) {
                         continue;
                     }
-                    if(dpSegment[i][i + half_len].equals(dpSegment[j - half_len][j]) && dp[k-1][i][i + half_len]) {
-                        dp[k][i][j] = true;
+                    int half_len = (j - i) / 2;
+                    if(half_len == 0) {
+                        dp[curState][i][j] = false;
+                    }
+                    else if((dpSegment[i][i + half_len] == dpSegment[j - half_len][j]) && dp[1 - curState][i][i + half_len]) {
+                        dp[curState][i][j] = true;
                         numKPalindrome++;
                     }
                 }
             }
+            
+            for(int i = 0; i < n; i++) {
+                for(int j = i + 1; j <= n; j++) {
+                    dp[1 - curState][i][j] = false;
+                }
+            } 
+            
             System.out.print(numKPalindrome + " ");
         }
         
