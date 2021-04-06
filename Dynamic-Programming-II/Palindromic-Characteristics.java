@@ -109,3 +109,56 @@ public class Main {
 
     }
 }
+
+
+
+
+/*
+https://codeforces.com/contest/835/problem/D
+*/
+import java.util.*;
+import java.io.*;
+
+class Main {
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        String input = scan.next();
+        int n = input.length();
+        int[][] dp = new int[n + 1][n + 1]; // dp(l, r) = max_palin(l, r): max k that segment (l, r) can attain
+        int[] count = new int[n + 1]; // number of k-palindromes in s
+        
+        for (int subLen = 1; subLen <= n; subLen++) {
+            for (int left = 0; left <= n - subLen; left++) {
+                int right = left + subLen - 1;
+
+                if (subLen == 1) {
+                    dp[left][left] = 1;
+                }
+                else if (subLen == 2) {
+                    if (input.charAt(left) == input.charAt(right)) {
+                        dp[left][right] = 2;
+                    }
+                }
+                else {
+                    if (input.charAt(left) == input.charAt(right) && dp[left + 1][right - 1] > 0) {
+                        dp[left][right] = dp[left][left + subLen / 2 - 1] + 1;
+                    } 
+                }
+                count[dp[left][right]]++;
+            }
+        }
+        
+        
+        for (int i = n - 1; i >= 1; i--) { // because a kth palindrome is also a (k-1)th palindrome
+            count[i] += count[i + 1];
+        }
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print(count[i] + " ");
+        }
+
+    }
+    
+}
+
