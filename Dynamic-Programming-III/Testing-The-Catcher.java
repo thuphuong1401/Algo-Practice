@@ -155,6 +155,10 @@ class MyCode {
 
 }
 
+
+
+
+
 /*
 Concise O(nlogn) solution
 */
@@ -240,6 +244,81 @@ class MyCode {
             } else {
                 left = mid + 1;
                 // right = mid-1;
+            }
+        }
+
+        return pos;
+    }
+
+}
+
+
+
+
+
+
+import java.util.*;
+import java.io.*;
+
+class MyCode {
+
+    public static void main(String[] args) {
+
+        Scanner scan = new Scanner(System.in);
+        int testCase = 1;
+        while (true) { // test case
+            int n = scan.nextInt();
+            if (n == -1) {
+                return; // het tests
+            }
+            List<Integer> arr = new ArrayList<>();
+            arr.add(n);
+            while (true) {
+                int x = scan.nextInt();
+                if (x == -1) {
+                    break;
+                }
+                arr.add(x);
+            }
+
+            int length = longestDecreasingSub(arr);
+            System.out.println("Test #" + testCase + ":");
+            System.out.println("  maximum possible interceptions: " + length);
+            System.out.println();
+            testCase++;
+        }
+    }
+
+    private static int longestDecreasingSub(List<Integer> arr) {
+        Collections.reverse(arr);
+        int length = 1;
+        List<Integer> result = new ArrayList<>();
+        result.add(0);
+        for (int i = 1; i < arr.size(); i++) {
+            if (arr.get(i) < arr.get(result.get(0))) {
+                result.set(0, i);
+            } else if (arr.get(i) >= arr.get(result.get(length - 1))) {
+                result.add(i);
+                length++;
+            } else {
+                int pos = lowerBound(arr, result, length, arr.get(i));
+                result.set(pos, i);
+            }
+        }
+        return length;
+    }
+
+    private static int lowerBound(List<Integer> arr, List<Integer> sub, int n, int x) {
+        int left = 0, right = n;
+        int pos = n;
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            int index = sub.get(mid);
+            if (arr.get(index) > x) {
+                pos = mid;
+                right = mid;
+            } else {
+                left = mid + 1;
             }
         }
 
