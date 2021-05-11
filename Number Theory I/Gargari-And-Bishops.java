@@ -79,5 +79,75 @@ class MyCode {
             return "BLACK";
         }
     }
+}
+
+
+
+/*
+Essentially the same but replace Scanner by BufferedReader, which is much faster. This gets AC on Codeforces while the Scanner version did not
+*/
+import java.util.*;
+
+import java.io.*;
+
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        long[][] board = new long[n + 1][n + 1];
+        long[] principalDiagonal = new long[2 * (n + 1)];
+        long[] secondaryDiaognal = new long[2 * (n + 1)];
+        for (int i = 1; i <= n; i++) {
+
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            for (int j = 1; j <= n; j++) {
+                board[i][j] = Integer.parseInt(st.nextToken());
+                int coordPrincipal = getPrincipalDiagonal(i, j, n);
+                int coordSecondary = getSecondaryDiagonal(i, j);
+
+                principalDiagonal[coordPrincipal] += board[i][j];
+                secondaryDiaognal[coordSecondary] += board[i][j];
+            }
+        }
+
+        long bestWhite = 0, bestBlack = 0;
+        int xW = 1, yW = 1, xB = 1, yB = 2;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                long totalPoints = principalDiagonal[getPrincipalDiagonal(i, j, n)]
+                        + secondaryDiaognal[getSecondaryDiagonal(i, j)] - board[i][j];
+                if (((i + j) & 1) == 1) {
+                    if (totalPoints > bestBlack) {
+                        bestBlack = totalPoints;
+                        xB = i;
+                        yB = j;
+                    }
+                } else {
+                    if (totalPoints > bestWhite) {
+                        bestWhite = totalPoints;
+                        xW = i;
+                        yW = j;
+                    }
+                }
+            }
+        }
+
+        long bestScore = bestWhite + bestBlack;
+        System.out.println(bestScore);
+        System.out.println(xW + " " + yW + " " + xB + " " + yB);
+
+    }
+
+    private static int getPrincipalDiagonal(int i, int j, int n) {
+        return i - j + n;
+    }
+
+    private static int getSecondaryDiagonal(int i, int j) {
+        return i + j;
+    }
 
 }
+
+
