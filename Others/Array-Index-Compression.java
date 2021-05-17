@@ -33,3 +33,29 @@ class MyCode {
         }
     }
 }
+
+
+// Another version of array index compression
+/*
+         * Number compression
+         */
+        /*long[] tempCopy = new long[n];
+        for (int i = 0; i < n; i++) {
+            tempCopy[i] = temp[i];
+        }
+        Arrays.sort(tempCopy);
+        int count = 1;
+        Map<Long, Integer> map = new HashMap<>();
+        map.put(tempCopy[0], count);
+        for (int i = 1; i < n; i++) {
+            if (tempCopy[i] != tempCopy[i - 1]) {
+                count++;
+            }
+            map.put(tempCopy[i], count);
+        }
+
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = map.get(temp[i]);
+        }
+        */
