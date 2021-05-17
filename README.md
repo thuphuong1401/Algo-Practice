@@ -1,12 +1,13 @@
 # Algo-Practice
-# Competitive programming problems I solved
-A code documentation of the problems I solved.
+A collection of competitive programming problems I solved.
 Problem sources:
 - Codeforces
 - Hackerrank
-- Leet Code
+- LeetCode
 - SPOJ
 - Big-O
 - UVA Online Judge
 - Codechef
 - URI Online Judge
+- LightOJ
+- GeeksForGeeks
